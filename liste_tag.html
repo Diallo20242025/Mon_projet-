@@ -1,0 +1,41 @@
+{% extends 'blog/back_office/base.html' %}
+
+{% block main%}
+ <div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h3>Listes des Tag</h3>
+
+        </div>
+    </div>
+            <a href=" {% url 'add_tag' %}"  class="btn btn-primary"> Create Tag </a>
+
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>code_color</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tag in tag %}
+                        <tr>
+                            <td>a{{tag.nom}}</td>
+                            <td>{{tag.code_color}}</td>
+                            <td>
+                                <a href="{% url 'update_tag' tag.id %}" class="btn btn-warning"> Modifier</a>
+                                <a href="{% url 'tag_delete' tag.id %}" class="btn btn-danger">Supprimer</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+ </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'blog/back_office/base.html' %}
+
+{% block main %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h3>Liste des articles </h3>
+        </div>
+    </div>
+
+    <a href="{% url 'ajouter_article'  %}" class="btn btn-primary">créer un nouvel article </a>
+    <div class="row">
+        <div class="col-12">
+            <table class="table" >
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Catégorie</th>
+                        <th>Contenu</th>
+                        <th>Auteur</th>
+                        <th>Date de publication</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for article in articles %}
+                    <tr>
+                        <td>{{article.titre}}</td>
+                        <td>{{article.categorie}}</td>
+                        <td>{{article.contenu}}</td>
+                        <td>{{article.auteur}}</td>
+                        <td>{a{rticle.date_pub}}</td>
+                        <td><a href="#!"><img class="card-img-top" src="{{article.image.url}}" alt="..." width="250" height="100" /></a></td>
+                        <td>
+                         
+
+                                <div> <a href="{% url 'update' article.id %}" class="btn btn-warning">Modifier</a>
+                                    <a href="{% url 'delete' article.id %}" class="btn btn-danger">Supprimer</a>
+                                </div>
+                            </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
